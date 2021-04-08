@@ -114,3 +114,74 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+//step-5
+//adding new article object to the data
+
+data.push({title: 'New data',
+date: 'Apr 7th, 2021',
+firstParagraph: `Pick a boo!`,
+
+secondParagraph: `Time to have some fun!!`,
+
+thirdParagraph: `I need a break ;).`});
+//step-1
+
+function articleMaker(dataObj){
+  const divEl = document.createElement("div");
+  divEl.classList.add("article");
+  const h2El = document.createElement("h2");
+  h2El.textContent = dataObj.title;
+  divEl.appendChild(h2El);
+  //p1
+  const p1El = document.createElement("p");
+  p1El.classList.add("date");
+  p1El.textContent = dataObj.date;
+  divEl.appendChild(p1El);
+  //para-1
+  const paraEl = document.createElement("p");
+  paraEl.textContent = dataObj.firstParagraph;
+  divEl.appendChild(paraEl);
+  //para-2
+  const para2El = document.createElement("p");
+  para2El.textContent = dataObj.secondParagraph;
+  divEl.appendChild(para2El);
+  //para-3
+  const para3El = document.createElement("p");
+  para3El.textContent = dataObj.thirdParagraph;
+  divEl.appendChild(para3El);
+  //span
+  const spanEl = document.createElement("span");
+  spanEl.classList.add("expandButton");
+  spanEl.textContent = "+";
+  divEl.appendChild(spanEl);
+
+//step-2
+// const spanEvent = document.querySelector("span.expandButton");
+spanEl.addEventListener("click", (e)=>{
+
+  divEl.classList.toggle("article-open");
+})
+  //step-3
+  return divEl;
+
+}
+
+//step-4
+//looping through the data and creating a DOM node for each data object item
+const articleElements = data.map((item)=>{
+  //console.log(articleMaker(item));
+  return articleMaker(item);
+})
+
+//console.log(articleElements);
+//looping through the each DOM node and adding it as a child node to the parent(div with class "article")
+const article = document.querySelector(".articles")
+articleElements.forEach((articleElement)=>{
+article.appendChild(articleElement);
+});
+
+
+
+
+
